@@ -1,5 +1,5 @@
 import tkinter
-import API
+import Graph
 
 window = tkinter.Tk()
 window.title(" Bala-bala ")
@@ -17,7 +17,7 @@ label2 = tkinter.Label(window,text = "Masukkan Posisi Asal")
 label3 = tkinter.Label(window,text = "Masukkan Posisi Tujuan")
 entry2 = tkinter.Entry(window, bd = 5)
 entry3 = tkinter.Entry(window, bd = 5)
-button2 = tkinter.Button(window,text = " Cari Jarak " , command = API.API)
+button2 = tkinter.Button(window,text = " Cari Jarak ",command = Graph.grafVis )
 
 label2.grid(row=1,column=0)
 entry2.grid(row=1,column = 1)
