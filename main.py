@@ -36,7 +36,6 @@ class GUI:
 
     def button2click(self):
         Jalur = Astar.AStar(self.File.infoSimpul, self.File.arrayKetetanggaan, self.entry2.get(), self.entry3.get(), len(self.File.infoSimpul))
-        print(Jalur)
 
         # Membentuk graph
         G = Graph.GraphVisualization()
@@ -51,9 +50,6 @@ class GUI:
 
         # Graph visualization
         G.visualize(jalur=Jalur)
-
-    def tampilkanPerintah(self):
-        self.File.tampilkan()
 
 class File:
     def __init__(self):
@@ -123,16 +119,6 @@ def main():
     root.window.mainloop()
 
 main()
-# # Graph visualization
-# f = tkinter.Figure(figsize=(5,5), dpi=100)
-# a = f.add_subplot(111)
-#
-
-# canvas = tkinter.FigureCanvasTkAgg(f,G)
-# canvas.show()
-# canvas.get_tk_widget().grid(row=3 , column = 0, fill = tkinter.BOTH, expand = True)
-
-
 
 
 

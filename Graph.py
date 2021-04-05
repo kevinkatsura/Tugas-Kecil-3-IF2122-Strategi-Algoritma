@@ -45,5 +45,5 @@ class GraphVisualization:
         # Menambahkan legenda
         pink_patches = mpatches.Patch(color='pink', label='Node yang dilalui')
         skyblue_patches = mpatches.Patch(color='skyblue', label='Node yang tidak dilalui')
-        plt.legend(handles=[pink_patches,skyblue_patches])
+        plt.legend(handles=[pink_patches,skyblue_patches], title = 'Total Jarak adalah ' + jalur[len(jalur)-1])
         plt.show()
