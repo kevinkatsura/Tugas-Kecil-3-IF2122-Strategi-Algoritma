@@ -1,48 +1,141 @@
 import tkinter
 import Graph
+import Astar
+from tkinter import ttk
+from functools import partial
 
-window = tkinter.Tk()
-window.title(" Bala-bala ")
+class GUI:
+    def __init__(self):
+        self.File = File()
+        self.window = tkinter.Tk()
+        self.window.title(" Bala-bala ")
+        # First Row
+        self.label1 = tkinter.Label(self.window, text="Nama File pada folder test")
+        self.label1.grid(row = 0 , column = 0)
+        self.entry1 = tkinter.Entry(self.window, bd =5)
+        self.entry1.grid(row = 0 , column = 1)
+        self.button1 = tkinter.Button(self.window,text = " open ")
+        self.button1.grid(row = 0 , column = 2)
 
-# First Row
-label1 = tkinter.Label(window, text="Nama File")
-label1.grid(row = 0 , column = 0)
-entry1 = tkinter.Entry(window, bd =5)
-entry1.grid(row = 0 , column = 1)
-button1 = tkinter.Button(window,text = " open ")
-button1.grid(row = 0 , column = 2)
+        # Origin
+        self.label2 = tkinter.Label(self.window, text="Masukkan Posisi Asal")
+        self.label3 = tkinter.Label(self.window, text="Masukkan Posisi Tujuan")
+        self.entry2 = ttk.Combobox(self.window)
+        self.entry3 = ttk.Combobox(self.window)
+        self.button2 = tkinter.Button(self.window, text=" Cari Jarak ")
+        self.label2.grid(row=1, column=0)
+        self.entry2.grid(row=1, column=1)
+        self.label3.grid(row=2, column=0)
+        self.entry3.grid(row=2, column=1)
+        self.button2.grid(row=2, column=2)
 
-# Origin
-label2 = tkinter.Label(window,text = "Masukkan Posisi Asal")
-label3 = tkinter.Label(window,text = "Masukkan Posisi Tujuan")
-entry2 = tkinter.Entry(window, bd = 5)
-entry3 = tkinter.Entry(window, bd = 5)
-button2 = tkinter.Button(window,text = " Cari Jarak ",command = Graph.grafVis )
+    def button1click(self,entry1Value):
+        self.File.openFile(entry1Value)
+        self.entry2["values"] = self.File.getSimpul()
+        self.entry3["values"] = self.File.getSimpul()
 
-label2.grid(row=1,column=0)
-entry2.grid(row=1,column = 1)
-label3.grid(row=2,column=0)
-entry3.grid(row=2,column=1)
-button2.grid(row=2 ,column = 2)
+    def button2click(self):
+        Jalur = Astar.AStar(self.File.infoSimpul, self.File.arrayKetetanggaan, self.entry2.get(), self.entry3.get(), len(self.File.infoSimpul))
+        print(Jalur)
 
-# Graph visualization
-f = Figure(figsize=(5,5), dpi=100)
-a = f.add_subplot(111)
+        # Membentuk graph
+        G = Graph.GraphVisualization()
+        for i in (self.File.getEdge()):
+            index1 = 0
+            index2 = 0
+            while(i[0] != self.File.infoSimpul[index1][0]):
+                index1+=1
+            while (i[1] != self.File.infoSimpul[index2][0]):
+                index2 += 1
+            G.addEdge(i[0],i[1],self.File.arrayKetetanggaan[index1][index2])
+
+        # Graph visualization
+        G.visualize(jalur=Jalur)
+
+    def tampilkanPerintah(self):
+        self.File.tampilkan()
+
+class File:
+    def __init__(self):
+        # Buffer untuk isi file input
+        self.arrayKetetanggaan = [] # matriks nxn, elemenij = "X" jika simpul i dan j tidak tetangga dan = sebuah nilai jika bertetangga
+        self.infoSimpul = [] # matriks nx3, elemen pertama nama simpul, kedua dan ketiga koordinat x dan y
+
+    def openFile(self,namaFile):
+        t_file = open("./test/"+namaFile, "r")
+        teks = t_file.readlines()
+        t_file.close()
+        indeks =0
+        jumlah = -1
+        for baris in teks:
+            if(indeks==0):
+                jumlah = int(baris)
+            elif (indeks <= jumlah):
+                temp =""
+                arr=[]
+                for karakter in baris:
+                    if (karakter != " " and karakter != "\n"):
+                        temp += karakter
+                    elif (karakter == " " or karakter =="\n"):
+                        arr.append(temp)
+                        temp =""
+                self.infoSimpul.append(arr)
+            else:
+                temp =""
+                arr=[]
+                for karakter in baris:
+                    if (karakter != " " and karakter != "\n"):
+                        temp += karakter
+                    elif (karakter == " " or karakter =="\n"):
+                        arr.append(temp)
+                        temp =""
+                if(temp != ""):
+                    arr.append(temp)
+                self.arrayKetetanggaan.append(arr)
+            indeks+=1
+
+    def getSimpul(self):
+        simpul = []
+        for i in range(len(self.infoSimpul)):
+            simpul.append(self.infoSimpul[i][0])
+        return simpul
+
+    def tampilkan(self):
+        print(self.arrayKetetanggaan)
+        print(self.infoSimpul)
+        print(len(self.infoSimpul))
+        print(self.getEdge())
+        print(self.getEdge()[0][0])
+
+    def getEdge(self):
+        Edge = []
+        for i in range(len(self.arrayKetetanggaan)):
+            for j in range(len(self.arrayKetetanggaan)):
+                if(i != j):
+                    if(self.arrayKetetanggaan[i][j] != "X"):
+                        Edge.append((self.infoSimpul[i][0],self.infoSimpul[j][0]))
+        return Edge
+
+def main():
+    root = GUI()
+    root.button1["command"] = lambda: root.button1click(entry1Value=root.entry1.get())
+    root.button2["command"] = root.button2click
+    root.window.mainloop()
+
+main()
+# # Graph visualization
+# f = tkinter.Figure(figsize=(5,5), dpi=100)
+# a = f.add_subplot(111)
+#
+
+# canvas = tkinter.FigureCanvasTkAgg(f,G)
+# canvas.show()
+# canvas.get_tk_widget().grid(row=3 , column = 0, fill = tkinter.BOTH, expand = True)
 
 
-# Driver code
-G = Graph.GraphVisualization()
-G.addEdge(0, 2)
-G.addEdge(1, 2)
-G.addEdge(1, 3)
-G.addEdge(5, 3)
-G.addEdge(3, 4)
-G.addEdge(1, 0)
-G.visualize()
 
-canvas = FigureCanvasTkAgg(f,G)
-canvas.show()
-canvas.get_tk_widget().grid(row=3 , column = 0, fill = tkinter.BOTH, expand = True)
 
-window.mainloop()
+
+
+
 

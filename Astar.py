@@ -75,38 +75,5 @@ def AStar (infoSimpul, arrayKetetanggaan, simpulAsal, simpulTujuan, jumlah):
     Jalur.append(str(TotalJarak))
     return Jalur
 
-t_file = open("./test/file1.txt", "r")
-teks=t_file.readlines()
-t_file.close()
-indeks =0
-jumlah =-1
-infoSimpul=[]                   #matriks nx3, elemen pertama nama simpul, kedua dan ketiga koordinat x dan y
-arrayKetetanggaan = []          #matriks nxn, elemenij = "X" jika simpul i dan j tidak tetangga dan = sebuah nilai jika bertetangga
-for baris in teks:
-    if(indeks==0):
-        jumlah = int(baris)
-    elif (indeks <= jumlah):
-        temp =""
-        arr=[]
-        for karakter in baris:
-            if (karakter != " " and karakter != "\n"):
-                temp += karakter
-            elif (karakter == " " or karakter =="\n"):
-                arr.append(temp)
-                temp =""
-        infoSimpul.append(arr)
-    else:
-        temp =""
-        arr=[]
-        for karakter in baris:
-            if (karakter != " " and karakter != "\n"):
-                temp += karakter
-            elif (karakter == " " or karakter =="\n"):
-                arr.append(temp)
-                temp =""
-        arrayKetetanggaan.append(arr)
-    indeks+=1
 
-Jalur = AStar(infoSimpul, arrayKetetanggaan, "A", "C", jumlah)
-for i in Jalur:
-    print(i)
+
