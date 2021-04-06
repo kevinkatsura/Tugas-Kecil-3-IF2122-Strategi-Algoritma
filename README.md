@@ -3,3 +3,7 @@
 > Louis Riemenn 13519016
 
 > Kevin Katsura 13519216 <hr>
+
+## Requirement
+* Install package matplotlib, networkx, dan tkinter
+> 1. 
