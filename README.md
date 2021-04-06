@@ -19,4 +19,5 @@
 
 > Program telah dijalankan
 
+<hr>
 ## Penggunaan Aplikasi
