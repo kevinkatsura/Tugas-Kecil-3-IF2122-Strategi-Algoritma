@@ -1,10 +1,7 @@
 import tkinter
-import urllib
-
 import Graph
 import Astar
 from tkinter import ttk
-from tkinterhtml import HtmlFrame
 
 class GUI:
     def __init__(self):
@@ -69,7 +66,7 @@ class File:
         self.infoSimpul = [] # matriks nx3, elemen pertama nama simpul, kedua dan ketiga koordinat x dan y
 
     def openFile(self,namaFile):
-        t_file = open("./test/"+namaFile, "r")
+        t_file = open("../test/"+namaFile, "r")
         teks = t_file.readlines()
         t_file.close()
         indeks =0
