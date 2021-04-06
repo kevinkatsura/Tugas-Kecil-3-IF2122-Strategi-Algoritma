@@ -11,7 +11,6 @@ def FindSimpul (infoSimpul, simpul):
         i+=1
     return lokasi
 
-
 def CompareSimpul (simpul1, simpul2): 
     if (len(simpul1)==len(simpul2)):
         i = 0
@@ -77,7 +76,6 @@ def AStar (infoSimpul, arrayKetetanggaan, simpulAsal, simpulTujuan, jumlah):
             break
         arrayOfIndeks.append(CalonSimpulSelanjutnya)
         Jalur.append(infoSimpul[CalonSimpulSelanjutnya][0])
-        print(infoSimpul[CalonSimpulSelanjutnya][0])
         TotalJarak += float(arrayKetetanggaan[lokasiSekarang][CalonSimpulSelanjutnya])
         lokasiSekarang = CalonSimpulSelanjutnya
     Jalur.append(str(TotalJarak))

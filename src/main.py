@@ -27,10 +27,8 @@ class GUI:
         self.label3.grid(row=2, column=0)
         self.entry3.grid(row=2, column=1)
         self.button2.grid(row=2, column=2)
-
-        # MAP
-        # frame = HtmlFrame(self.window,horizontal_scrollbar="auto")
-        # frame.set_content(urllib.request.urlopen("https://www.google.com/maps/@2.6016679,98.7044794,18.94z").read().decode())
+        self.label4 = tkinter.Label(self.window)
+        self.label4.grid(row=3,column=0,columnspan=3)
 
     def button1click(self,entry1Value):
         self.File.openFile(entry1Value)
@@ -38,27 +36,28 @@ class GUI:
         self.entry3["values"] = self.File.getSimpul()
 
     def button2click(self):
-        Jalur = Astar.AStar(self.File.infoSimpul, self.File.arrayKetetanggaan, self.entry2.get(), self.entry3.get(), len(self.File.infoSimpul))
-        print(Jalur)
+        if(self.entry2.get() == self.entry3.get()):
+            self.label4["text"] = " -- Tidak boleh menginput simpul yang sama -- "
+        else:
+            Jalur = Astar.AStar(self.File.infoSimpul, self.File.arrayKetetanggaan, self.entry2.get(), self.entry3.get(), len(self.File.infoSimpul))
+            if(len(Jalur) == 2):
+                self.label4["text"] = " -- Tidak ditemukan jalur dengan algoritma A* -- "
+            else:
+                self.label4["text"] = ""
+                # Membentuk graph
+                G = Graph.GraphVisualization()
+                for i in (self.File.getEdge()):
+                    index1 = 0
+                    index2 = 0
+                    while(i[0] != self.File.infoSimpul[index1][0]):
+                        index1+=1
+                    while (i[1] != self.File.infoSimpul[index2][0]):
+                        index2 += 1
+                    G.addEdge(i[0],i[1],self.File.arrayKetetanggaan[index1][index2])
 
-        # Membentuk graph
-        G = Graph.GraphVisualization()
-        for i in (self.File.getEdge()):
-            index1 = 0
-            index2 = 0
-            while(i[0] != self.File.infoSimpul[index1][0]):
-                index1+=1
-            while (i[1] != self.File.infoSimpul[index2][0]):
-                index2 += 1
-            G.addEdge(i[0],i[1],self.File.arrayKetetanggaan[index1][index2])
+                # Graph visualization
+                G.visualize(jalur=Jalur)
 
-        # Graph visualization
-        G.visualize(jalur=Jalur)
-
-    def jalur (self):
-        Jalur = Astar.AStar(self.File.infoSimpul, self.File.arrayKetetanggaan, self.entry2.get(), self.entry3.get(),
-                            len(self.File.infoSimpul))
-        print(Jalur)
 class File:
     def __init__(self):
         # Buffer untuk isi file input
@@ -103,13 +102,6 @@ class File:
         for i in range(len(self.infoSimpul)):
             simpul.append(self.infoSimpul[i][0])
         return simpul
-
-    def tampilkan(self):
-        print(self.arrayKetetanggaan)
-        print(self.infoSimpul)
-        print(len(self.infoSimpul))
-        print(self.getEdge())
-        print(self.getEdge()[0][0])
 
     def getEdge(self):
         Edge = []
