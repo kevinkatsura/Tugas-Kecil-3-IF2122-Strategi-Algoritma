@@ -1,0 +1,34 @@
+A : lokasi simpang pertemuan Jl. Dewi Sartika dan Jl. Dalem Kaum
+B : lokasi Jl. Dalem Kaum di depan PT Abdi Komunikasi
+C : lokasi Jl. Dalem kaum di depan parkir Basement Alun-Alun
+D : lokasi simpang pertemuan Jl. Dalem Kaum dan Jl. Alun-Alun Timur
+E : lokasi simpang pertemua Jl. Alun-Alun Timur dan Jl. Asia Afrika
+F : lokasi Jl. Asia Afrika di depan halte alun-alun
+G : lokasi simpang pertemuan Jl. Asia Afrika dan Jl.Otto Iskandar Dinata
+H : lokasi simpang pertemuan Jl. Otto Iskhandar Dinata dan Jl. Kepatihan
+I : lokasi simpang pertemuan Jl. Kepatiham dan Jl. Dewi Sartika
+
+A -6.92243 , 107.60640
+B -6.92250 , 107.60711
+C -6.92254 , 107.60730
+D -6.92257 , 107.60752
+E -6.92116 , 107.60757
+F -6.92115 , 107.60749
+G -6.92082 , 107.60409
+H -6.92307 , 107.60395
+I -6.92340 , 107.60631
+
+X 77.87 X X X X X X X
+X X 22.88 X X X X X X
+X X X 25.03 X X X X X
+X X X X 156.21 X X X X
+X X X X X 8.10 X X X
+X X X X X X 377.97 X X
+X X X X X X X 250.19 X
+X X X X X X X X 264.19
+108.98 X X X X X X X X
+
+akan dibuat patokan titik dasar:
+-6.92 , 107.60
+lalu diubah ke m dengan mengalikan:
+111.2 x 1000
