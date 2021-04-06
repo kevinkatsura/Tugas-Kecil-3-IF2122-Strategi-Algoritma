@@ -5,7 +5,8 @@
 > Kevin Katsura 13519216 <hr>
 
 ## Requirement
-> Install python pada komputer. Python dapat diunduh [di sini](python.org)
+> Install python pada komputer. Python dapat diunduh [di sini](https://www.python.org/)
+
 > Install package matplotlib, networkx, dan tkinter. Jalankan perintah berikut pada terminal
 
     1. pip3 install matplotlib
