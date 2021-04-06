@@ -1,17 +1,17 @@
 13
-BankSumut 13.8 46.4
-MakmurTani 19.1 54.4
-TokoHoras 31.5 46.1
-BankBRI 23.3 31.7
-TokoRosari 27 38.5
-Pelabuhan 12 19
-HotelDainang 32.8 1.7
-BengkelCK 58.9 -9.4
-RMAl-hafiz 73.4 -25.4
-SMPN1 68.1 -21.1
-WarungMB 80.3 -29.4
-SDN1 87.5 -6.1
-SMPBudiMulia 43.6 22.9
+BankSumut 153.456 515.968
+MakmurTani 212.392 604.928
+TokoHoras 350.28 512.632
+BankBRI 259.096 352.504
+TokoRosari 300.24 428.12
+Pelabuhan 133.44 211.28
+HotelDainang 364.736 18.904
+BengkelCK 654.968 -104.528
+RMAl-hafiz 816.208 -282.448
+SMPN1 757.272 -234.632
+WarungMB 892.936 -326.928
+SDN1 973 -67.832
+SMPBudiMulia 484.832 254.648
 X 106.45 X 337.62 X X X X X X X X X
 106.45 X 164.11 X X X X X X X X X X
 X 164.11 X X 97.72 X X X X X X X X
