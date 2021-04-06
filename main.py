@@ -1,8 +1,10 @@
 import tkinter
+import urllib
+
 import Graph
 import Astar
 from tkinter import ttk
-from functools import partial
+from tkinterhtml import HtmlFrame
 
 class GUI:
     def __init__(self):
@@ -29,6 +31,10 @@ class GUI:
         self.entry3.grid(row=2, column=1)
         self.button2.grid(row=2, column=2)
 
+        # MAP
+        # frame = HtmlFrame(self.window,horizontal_scrollbar="auto")
+        # frame.set_content(urllib.request.urlopen("https://www.google.com/maps/@2.6016679,98.7044794,18.94z").read().decode())
+
     def button1click(self,entry1Value):
         self.File.openFile(entry1Value)
         self.entry2["values"] = self.File.getSimpul()
@@ -36,6 +42,7 @@ class GUI:
 
     def button2click(self):
         Jalur = Astar.AStar(self.File.infoSimpul, self.File.arrayKetetanggaan, self.entry2.get(), self.entry3.get(), len(self.File.infoSimpul))
+        print(Jalur)
 
         # Membentuk graph
         G = Graph.GraphVisualization()
@@ -51,6 +58,10 @@ class GUI:
         # Graph visualization
         G.visualize(jalur=Jalur)
 
+    def jalur (self):
+        Jalur = Astar.AStar(self.File.infoSimpul, self.File.arrayKetetanggaan, self.entry2.get(), self.entry3.get(),
+                            len(self.File.infoSimpul))
+        print(Jalur)
 class File:
     def __init__(self):
         # Buffer untuk isi file input

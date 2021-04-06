@@ -50,6 +50,8 @@ def AStar (infoSimpul, arrayKetetanggaan, simpulAsal, simpulTujuan, jumlah):
     lokasiSekarang = indeksAsal
     found = False
     Jalur = []
+    arrayOfIndeks = []
+    arrayOfIndeks.append(indeksAsal)
     TotalJarak = 0
     Jalur.append(simpulAsal)
     while (not found):
@@ -60,16 +62,22 @@ def AStar (infoSimpul, arrayKetetanggaan, simpulAsal, simpulTujuan, jumlah):
             if(arrayKetetanggaan[lokasiSekarang][i].upper() != "X" and i==indeksTujuan):
                 found = True
                 CalonSimpulSelanjutnya = i
-            elif (arrayKetetanggaan[lokasiSekarang][i].upper() != "X" and Hasil==0):
+            elif (arrayKetetanggaan[lokasiSekarang][i].upper() != "X" and Hasil==0 and i not in arrayOfIndeks):
                 Hasil = float(arrayKetetanggaan[lokasiSekarang][i]) + arrayBobot[i]
                 CalonSimpulSelanjutnya = i
-            elif (arrayKetetanggaan[lokasiSekarang][i].upper() != "X"):
+            elif (arrayKetetanggaan[lokasiSekarang][i].upper() != "X" and i not in arrayOfIndeks):
                 Hitungan = float(arrayKetetanggaan[lokasiSekarang][i]) + arrayBobot[i]
                 if (Hitungan < Hasil):
                     Hasil = Hitungan
                     CalonSimpulSelanjutnya = i
             i+=1
+        if (CalonSimpulSelanjutnya == -1):      #stak, gak didapat jalur melalui AStar
+            Jalur = ["not_found"]
+            found = True
+            break
+        arrayOfIndeks.append(CalonSimpulSelanjutnya)
         Jalur.append(infoSimpul[CalonSimpulSelanjutnya][0])
+        print(infoSimpul[CalonSimpulSelanjutnya][0])
         TotalJarak += float(arrayKetetanggaan[lokasiSekarang][CalonSimpulSelanjutnya])
         lokasiSekarang = CalonSimpulSelanjutnya
     Jalur.append(str(TotalJarak))
