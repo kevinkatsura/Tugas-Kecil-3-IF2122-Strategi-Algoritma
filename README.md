@@ -20,4 +20,16 @@
 > Program telah dijalankan
 
 <hr>
+
 ## Penggunaan Aplikasi
+> Ketik nama file pada kolom entry yang tersedia ( di samping *open button* ). Nama file yang dimasukkan **harus** ada pada **folder test** telah tersedia.
+
+> Ketika memasukkan nama file jangan lupa untuk menambahkan ekstensi **.txt** .
+
+> Tekan tombol *open* .
+
+> Pilih simpul asal dan simpul tujuan yang tersedia pada kedua *combo box* yang ada.
+
+> Terakhir, tekan tombol *Cari Jarak* .
+
+> Hasil akan ditampilkan.
